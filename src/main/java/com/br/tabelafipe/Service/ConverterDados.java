@@ -7,12 +7,13 @@ public class ConverterDados implements IConverterDados {
     @Override
     public <T> T converterdados(String json, Class<T> T) {
         try{
-
-        return mapper.readValue(json, T);
+            return mapper.readValue(json, T);
         }
         catch (Exception e){
             throw new RuntimeException(e);
         }
 
     }
+
+
 }

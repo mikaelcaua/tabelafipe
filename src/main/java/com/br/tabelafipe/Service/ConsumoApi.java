@@ -7,10 +7,11 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class ConsumoApi {
-    public String obterDadosApi(String url){
+    private String URL = "https://parallelum.com.br/fipe/api/v1/carros/marcas";
+    public String obterDadosApi(String path){
 
     HttpClient response = HttpClient.newHttpClient();
-    HttpRequest request = HttpRequest.newBuilder(URI.create(url)).build();
+    HttpRequest request = HttpRequest.newBuilder(URI.create(URL+path)).build();
     HttpResponse<String> json;
         try{
             json = response.send(request, HttpResponse.BodyHandlers.ofString());
