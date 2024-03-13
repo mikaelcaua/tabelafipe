@@ -17,6 +17,7 @@ public class Main {
     public void exibeMenu(){
         Integer entradaMarcaId;
         Integer entradaModeloId;
+        String entradaAnoId;
         json = consumo.obterDadosApi("");
 
         List<Marca> marcas = (Arrays.asList(converter.converterdados(json, DadosMarca[].class))).
@@ -41,7 +42,22 @@ public class Main {
         System.out.println("\n\n\nInsira o código do modelo do carro:");
         entradaModeloId = scanner.nextInt();
         json = consumo.obterDadosApi("/"+entradaMarcaId+"/modelos/"+entradaModeloId+"/anos");
-        System.out.println(json);
+////////List<Ano> dadosAno = Arrays.stream(converter.converterdados(json, DadosAno[].class)).map(da -> new Ano(da.codigo(), da.nome())).collect(Collectors.toList());
+        List<Ano> anos = Arrays.asList(converter.converterdados(json, DadosAno[].class))
+                                .stream().map(da -> new Ano(da.codigo(), da.nome())).collect(Collectors.toList());
+        anos.forEach(System.out::println);
+
+
+        System.out.println("\n\n\nDigite o código do ano:");
+        scanner.nextLine();
+        entradaAnoId = scanner.nextLine();
+        json = consumo.obterDadosApi("/"+entradaMarcaId+"/modelos/"+entradaModeloId+"/anos/"+entradaAnoId);
+        DadosCarro dadosCarroEscolhido = converter.converterdados(json , DadosCarro.class);
+        Carro carroEscolhido = new Carro(dadosCarroEscolhido);
+        System.out.println(carroEscolhido);
+
+
+
 
 
 

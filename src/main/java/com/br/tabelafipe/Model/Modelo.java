@@ -11,7 +11,7 @@ public class Modelo {
 
     @Override
     public String toString() {
-        return " codigo=" + codigo +
+        return " codigo do modelo=" + codigo +
                 ", nome='" + nome + '\'';
     }
 }
